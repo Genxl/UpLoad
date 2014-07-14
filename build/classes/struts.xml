@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+<struts>  
+    <constant name="struts.devMode" value="false" />  
+    <!-- 改变struts2默认为2M的上传文件大小限制 -->  
+    <constant name="struts.multipart.maxSize" value="10240000"/>  
+    <package name="upload" extends="struts-default">  
+        <action name="uploadFile" class="com.load.app.UpLoadAction">  
+            <param name="savePath">D:/Genxl/upload</param>  
+            <!-- <param name="allowTypes">text/plain,text/xml,text/html,image/gif,image/x-png,image/jpeg,image/pjpeg,image/jpg,image/bmp</param>  -->
+            <result name="success">load.jsp</result>  
+            <result name="input">load.jsp</result>  
+        </action>
+        <!--  
+        <action name="downloadFile" class="com.labci.struts2.action.DownloadFileAction">  
+            <param name="savePath">/upload</param>  
+            <result name="success">index.jsp</result>  
+        </action>  
+         --> 
+    </package>  
+</struts>  
