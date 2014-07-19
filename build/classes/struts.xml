@@ -10,14 +10,16 @@
         <action name="uploadFile" class="com.load.app.UpLoadAction">  
             <param name="savePath">D:/Genxl/upload</param>  
             <!-- <param name="allowTypes">text/plain,text/xml,text/html,image/gif,image/x-png,image/jpeg,image/pjpeg,image/jpg,image/bmp</param>  -->
-            <result name="success">load.jsp</result>  
-            <result name="input">load.jsp</result>  
+            <result name="success">load.jsp</result>
+            <!-- <result name="input">load.jsp</result>  -->
         </action>
-        <!--  
-        <action name="downloadFile" class="com.labci.struts2.action.DownloadFileAction">  
-            <param name="savePath">/upload</param>  
-            <result name="success">index.jsp</result>  
+        <action name="upload" class="com.load.app.UpLoadAction" method="haveData">  
+            <result name="success">load.jsp</result>   
+        </action>
+ 
+        <action name="downloadFile" class="com.load.app.downLoadAction">  
+            <param name="savePath">D:/Genxl/upload</param>  
         </action>  
-         --> 
+ 
     </package>  
 </struts>  

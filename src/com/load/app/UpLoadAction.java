@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -121,7 +123,7 @@ public class UpLoadAction extends ActionSupport implements ServletRequestAware{
             pstmt = conn.preparedStatement(sql);
             pstmt.setString(1, getFileNameFileName().get(i));
             pstmt.setString(2, nowtime);
-//            pstmt.execute();
+            pstmt.execute();
         }  
           
 //        List<String> fileHrefsList=new ArrayList<String>();  
@@ -133,4 +135,22 @@ public class UpLoadAction extends ActionSupport implements ServletRequestAware{
 //        request.setAttribute("fileNameList", fileHrefsList);  
         return SUCCESS;  
     }
+	
+	public String haveData() throws Exception{
+		MySqlDB conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = new MySqlDB();
+        String sql = "select realfilesname from uploadfiles";
+        pstmt = conn.preparedStatement(sql);
+        rs = pstmt.executeQuery();
+        List<String> fileNameList=new ArrayList<String>();
+        while(rs.next()){
+          String filename=rs.getString(1);
+          fileNameList.add(filename);  
+        }
+        System.out.println(fileNameList.size());
+        request.setAttribute("fileNameList", fileNameList);
+		return SUCCESS;
+	}
 }

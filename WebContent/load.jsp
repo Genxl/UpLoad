@@ -32,11 +32,28 @@
 	        auto: false,                // 选择之后，自动开始上传  
 	        multi: true,               // 是否支持同时上传多个文件  
 	        queueSizeLimit: 5,         // 允许多文件上传的时候，同时上传文件的个数 
+	        
+	        //onUploadSuccess: function (file, data, response) {
+            //    $('#' + file.id).find('.data').html(' - 上传完毕');
+	        //},	      
+            
+            onQueueComplete:function (){
+            	window.location.href="<%=basePath%>/upload.action";  //上传成功后跳转，并传递参数  
+            }
 	    });
 	});  
 </script>
 </head>
 	<body>
+		<table>  
+        <tr>  
+            <td>
+	             <c:forEach items="${fileNameList}" var="fileName">  
+	                 <a href="downloadFile.action?fileName=${fileName}">${fileName}</a><br/>  
+	             </c:forEach>  
+            </td>
+        </tr>       
+    	</table>  
 		<div id="fileQueue" style=""></div>
 		<input type="file" name="fileName" id="fileName" />  
         <a href="javascript:$('#fileName').uploadify('cancel', '*')">清除所有文件</a>  
